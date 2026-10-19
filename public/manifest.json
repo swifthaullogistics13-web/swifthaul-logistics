@@ -1,0 +1,24 @@
+
+{
+  "id": "/",
+  "name": "SwiftHaul Logistics",
+  "short_name": "SwiftHaul",
+  "description": "Track your SwiftHaul Logistics shipments worldwide.",
+  "start_url": "/",
+  "scope": "/",
+  "display": "standalone",
+  "background_color": "#f3f6fb",
+  "theme_color": "#102b50",
+  "icons": [
+    {
+      "src": "/icon-192.png",
+      "sizes": "192x192",
+      "type": "image/png"
+    },
+    {
+      "src": "/icon-512.png",
+      "sizes": "512x512",
+      "type": "image/png"
+    }
+  ]
+}
