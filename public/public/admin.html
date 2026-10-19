@@ -1,0 +1,265 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>SwiftHaul Logistics | Admin</title>
+  <style>
+    * { box-sizing: border-box; }
+    body {
+      margin: 0;
+      padding: 20px;
+      font-family: Arial, sans-serif;
+      background: #f3f6fb;
+      color: #172b4d;
+    }
+    header {
+      background: #102b50;
+      color: white;
+      padding: 22px;
+      border-radius: 12px;
+      margin-bottom: 20px;
+    }
+    h1 { margin: 0 0 8px; font-size: 25px; }
+    h2 { font-size: 19px; }
+    .card {
+      background: white;
+      padding: 20px;
+      margin: 16px 0;
+      border-radius: 12px;
+      box-shadow: 0 2px 8px #0000000d;
+    }
+    input, select, button {
+      width: 100%;
+      padding: 12px;
+      margin: 7px 0;
+      border: 1px solid #ccd5e0;
+      border-radius: 7px;
+      font-size: 16px;
+    }
+    button {
+      background: #102b50;
+      color: white;
+      border: 0;
+      font-weight: bold;
+      cursor: pointer;
+    }
+    .gold { background: #c9952e; }
+    #message { white-space: pre-wrap; overflow-wrap: anywhere; }
+    .shipment {
+      border: 1px solid #dce3ec;
+      padding: 14px;
+      border-radius: 8px;
+      margin-top: 12px;
+      overflow-wrap: anywhere;
+    }
+    .muted { color: #52647c; font-size: 14px; }
+  </style>
+</head>
+<body>
+  <header>
+    <h1>SwiftHaul Logistics</h1>
+    <div>Shipment Administration</div>
+  </header>
+
+  <section class="card">
+    <h2>Admin Access</h2>
+    <p class="muted">Enter the ADMIN_KEY configured in your Render service.</p>
+    <input id="adminKey" type="password" placeholder="Admin key">
+    <button onclick="connect()">Connect to Admin</button>
+    <p id="message" role="status"></p>
+  </section>
+
+  <section class="card">
+    <h2>Create a Shipment</h2>
+    <form id="createForm">
+      <input name="sender_name" placeholder="Sender's full name" required>
+      <input name="recipient_name" placeholder="Recipient's full name" required>
+      <input name="origin" placeholder="Origin / pickup location" required>
+      <input name="destination" placeholder="Destination / delivery location" required>
+      <input name="service" placeholder="Service type (e.g. Express)" required>
+      <input name="package_description" placeholder="Package description">
+      <input name="weight" placeholder="Package weight">
+      <label for="eta">Estimated delivery date</label>
+      <input id="eta" name="eta" type="date">
+      <button type="submit">Create Shipment</button>
+    </form>
+    <div id="created"></div>
+  </section>
+
+  <section class="card">
+    <h2>Update Shipment Status</h2>
+    <form id="updateForm">
+      <input name="tracking" placeholder="Tracking number" required>
+      <select name="status" required>
+        <option value="">Choose new status</option>
+        <option>Shipment Received</option>
+        <option>Processing</option>
+        <option>In Transit</option>
+        <option>Arrived at Facility</option>
+        <option>Out for Delivery</option>
+        <option>Delivered</option>
+        <option>Delivery Delayed</option>
+        <option>Held for Review</option>
+      </select>
+      <input name="location" placeholder="Current location">
+      <input name="note" placeholder="Update note">
+      <button type="submit">Update Status</button>
+    </form>
+  </section>
+
+  <section class="card">
+    <h2>Shipment Records</h2>
+    <button class="gold" onclick="loadShipments()">Refresh Shipments</button>
+    <div id="shipments"></div>
+  </section>
+
+  <script>
+    let key = "";
+
+    function showMessage(text) {
+      document.getElementById("message").textContent = text;
+    }
+
+    async function api(url, options = {}) {
+      const response = await fetch(url, {
+        ...options,
+        headers: {
+          "Content-Type": "application/json",
+          "x-admin-key": key,
+          ...(options.headers || {})
+        }
+      });
+
+      const data = await response.json().catch(() => ({}));
+
+      if (!response.ok) {
+        throw new Error(data.error || "Request failed");
+      }
+      return data;
+    }
+
+    async function connect() {
+      key = document.getElementById("adminKey").value.trim();
+
+      if (!key) {
+        showMessage("Please enter your admin key.");
+        return;
+      }
+
+      try {
+        await api("/api/admin/shipments");
+        showMessage("Connected successfully.");
+        await loadShipments();
+      } catch (error) {
+        showMessage("Could not connect: " + error.message);
+      }
+    }
+
+    document.getElementById("createForm")
+      .addEventListener("submit", async function(event) {
+        event.preventDefault();
+
+        if (!key) {
+          showMessage("Connect using your admin key first.");
+          return;
+        }
+
+        const form = new FormData(this);
+        const shipment = Object.fromEntries(form.entries());
+
+        try {
+          const result = await api("/api/admin/shipments", {
+            method: "POST",
+            body: JSON.stringify(shipment)
+          });
+
+          document.getElementById("created").textContent =
+            "Shipment created! Tracking number: " +
+            result.tracking_number;
+
+          this.reset();
+          await loadShipments();
+        } catch (error) {
+          showMessage("Could not create shipment: " + error.message);
+        }
+      });
+
+    document.getElementById("updateForm")
+      .addEventListener("submit", async function(event) {
+        event.preventDefault();
+
+        if (!key) {
+          showMessage("Connect using your admin key first.");
+          return;
+        }
+
+        const form = new FormData(this);
+        const values = Object.fromEntries(form.entries());
+        const tracking = values.tracking.trim().toUpperCase();
+
+        try {
+          await api(
+            "/api/admin/shipments/" +
+            encodeURIComponent(tracking) + "/events",
+            {
+              method: "POST",
+              body: JSON.stringify({
+                status: values.status,
+                location: values.location,
+                note: values.note
+              })
+            }
+          );
+
+          showMessage("Shipment status updated successfully.");
+          this.reset();
+          await loadShipments();
+        } catch (error) {
+          showMessage("Could not update shipment: " + error.message);
+        }
+      });
+
+    async function loadShipments() {
+      if (!key) {
+        showMessage("Enter your admin key and connect first.");
+        return;
+      }
+
+      const area = document.getElementById("shipments");
+      area.textContent = "Loading shipments...";
+
+      try {
+        const shipments = await api("/api/admin/shipments");
+        area.replaceChildren();
+
+        if (!shipments.length) {
+          area.textContent = "No shipments have been created yet.";
+          return;
+        }
+
+        shipments.forEach(function(shipment) {
+          const item = document.createElement("div");
+          item.className = "shipment";
+
+          const title = document.createElement("strong");
+          title.textContent = shipment.tracking_number;
+
+          const details = document.createElement("p");
+          details.textContent =
+            shipment.origin + " → " + shipment.destination;
+
+          const status = document.createElement("p");
+          status.textContent = "Status: " + shipment.status;
+
+          item.append(title, details, status);
+          area.appendChild(item);
+        });
+      } catch (error) {
+        area.textContent = "Could not load shipments: " + error.message;
+      }
+    }
+  </script>
+</body>
+</html>
