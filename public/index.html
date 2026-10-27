@@ -1,254 +1,338 @@
-
 <!DOCTYPE html>
 <html lang="en">
-<head> <link rel="manifest" href="/manifest.json">
-<meta name="theme-color" content="#102b50">
+<head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>SwiftHaul Logistics | Track Your Shipment</title>
+  <meta name="theme-color" content="#102b50">
+  <meta name="description" content="SwiftHaul Logistics shipment tracking, delivery services and customer support.">
+  <link rel="manifest" href="/manifest.json">
+  <title>SwiftHaul Logistics | Global Shipment Tracking</title>
   <style>
     * {
       box-sizing: border-box;
     }
-
+    html {
+      scroll-behavior: smooth;
+    }
     body {
       margin: 0;
-      font-family: Arial, sans-serif;
+      font-family: Arial, Helvetica, sans-serif;
       background: #f3f6fb;
       color: #1d2939;
-    }
-
-    header {
-      background: #102b50;
-      color: white;
-      padding: 22px 16px;
-      text-align: center;
-    }
-
-    header h1 {
-      margin: 0;
-      font-size: 28px;
-    }
-
-    header p {
-      margin: 8px 0 0;
-      color: #d8e7ff;
-    }
-
-    nav {
-      background: #174a83;
-      padding: 13px;
-      text-align: center;
-    }
-
-    nav a {
-      color: white;
-      text-decoration: none;
-      margin: 0 12px;
-      font-weight: bold;
-    }
-
-    .hero {
-      background: white;
-      margin: 28px auto;
-      padding: 32px 20px;
-      max-width: 760px;
-      border-radius: 12px;
-      text-align: center;
-      box-shadow: 0 4px 16px #00000010;
-    }
-
-    .hero h2 {
-      color: #102b50;
-      font-size: 28px;
-    }
-
-    .hero p {
       line-height: 1.6;
     }
-
-    form {
+    header {
+      background: linear-gradient(135deg, #102b50, #174a83);
+      color: white;
+      text-align: center;
+      padding: 28px 16px;
+    }
+    header h1 {
+      margin: 0;
+      font-size: clamp(27px, 5vw, 38px);
+    }
+    header p {
+      margin: 8px 0;
+      color: #d8e7ff;
+    }
+    #swiftHaulClock {
+      font-size: 14px;
+      overflow-wrap: anywhere;
+    }
+    nav {
+      background: #0c2342;
+      padding: 12px 8px;
+      text-align: center;
+      position: sticky;
+      top: 0;
+      z-index: 10;
+    }
+    nav a {
+      display: inline-block;
+      color: white;
+      text-decoration: none;
+      font-weight: bold;
+      padding: 7px 10px;
+      font-size: 14px;
+    }
+    nav a:hover {
+      color: #ffcf55;
+    }
+    .hero {
+      background: white;
+      width: calc(100% - 28px);
+      max-width: 850px;
+      margin: 30px auto;
+      padding: 32px 22px;
+      border-radius: 14px;
+      text-align: center;
+      box-shadow: 0 5px 22px #102b5012;
+    }
+    .hero h2 {
+      color: #102b50;
+      font-size: clamp(25px, 5vw, 34px);
+      margin-top: 0;
+    }
+    .hero p {
+      max-width: 620px;
+      margin: 12px auto;
+    }
+    .tracking-form {
       display: flex;
       flex-wrap: wrap;
       gap: 10px;
-      margin-top: 24px;
+      margin: 25px auto 0;
+      max-width: 650px;
     }
-
     input {
       flex: 1;
-      min-width: 190px;
-      padding: 14px;
+      min-width: 180px;
+      padding: 15px;
       border: 1px solid #ccd5e0;
-      border-radius: 6px;
+      border-radius: 7px;
       font-size: 16px;
     }
-
-    button {
+    button,
+    .support-button {
+      display: inline-block;
       background: #f2a900;
       color: #102b50;
-      border: none;
-      padding: 14px 22px;
-      border-radius: 6px;
+      border: 0;
+      border-radius: 7px;
+      padding: 14px 20px;
       font-size: 16px;
       font-weight: bold;
+      text-decoration: none;
       cursor: pointer;
     }
-
-    button:hover {
-      background: #ffc233;
+    button:hover,
+    .support-button:hover {
+      background: #ffca45;
     }
-
+    button:focus-visible,
+    a:focus-visible,
+    input:focus-visible {
+      outline: 3px solid #2876c7;
+      outline-offset: 3px;
+    }
     #result {
+      margin-top: 22px;
       text-align: left;
-      margin-top: 20px;
       overflow-wrap: anywhere;
     }
-
+    #result h3 {
+      color: #174a83;
+    }
+    .section-title {
+      text-align: center;
+      color: #102b50;
+      margin: 35px 12px 20px;
+    }
     .services {
-      max-width: 900px;
-      margin: 30px auto;
+      max-width: 1050px;
+      margin: 0 auto;
       padding: 0 16px;
       display: grid;
       grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
       gap: 18px;
     }
-
     .service {
       background: white;
-      padding: 22px;
-      border-radius: 10px;
+      padding: 24px 20px;
+      border-radius: 12px;
       text-align: center;
-      box-shadow: 0 3px 12px #00000008;
+      box-shadow: 0 4px 15px #102b500c;
     }
-
     .service h3 {
       color: #174a83;
     }
-
+    .service p {
+      margin-bottom: 0;
+    }
+    .support-panel {
+      width: calc(100% - 28px);
+      max-width: 850px;
+      margin: 36px auto;
+      padding: 30px 20px;
+      background: white;
+      border-radius: 14px;
+      text-align: center;
+      box-shadow: 0 5px 22px #102b5012;
+    }
+    .support-panel h2 {
+      color: #102b50;
+    }
+    .support-email {
+      color: #174a83;
+      font-weight: bold;
+      overflow-wrap: anywhere;
+    }
+    .support-button {
+      margin-top: 12px;
+    }
     footer {
       background: #102b50;
       color: white;
       text-align: center;
-      padding: 22px 12px;
+      padding: 25px 14px;
       margin-top: 40px;
     }
-
-    @media (max-width: 480px) {
-      .hero h2 {
-        font-size: 23px;
+    footer a {
+      color: #ffcf55;
+      overflow-wrap: anywhere;
+    }
+    footer p {
+      margin: 7px 0;
+    }
+    @media (max-width: 520px) {
+      nav {
+        position: static;
       }
-
       nav a {
-        display: inline-block;
-        margin: 6px;
+        padding: 6px;
+        margin: 2px;
       }
-
-      form {
+      .hero {
+        padding: 26px 16px;
+      }
+      .tracking-form {
         flex-direction: column;
       }
-
-      form button {
+      .tracking-form input,
+      .tracking-form button {
         width: 100%;
       }
     }
   </style>
 </head>
 <body>
-
-  <header>
+  <header id="home">
     <h1>SwiftHaul Logistics</h1>
     <p>Reliable Delivery. Every Step of the Way.</p>
+    <p id="swiftHaulClock" aria-live="off">Loading local date and time...</p>
   </header>
-
-  <nav>
+  <nav aria-label="Main navigation">
     <a href="#home">Home</a>
     <a href="#track">Track Shipment</a>
     <a href="#services">Our Services</a>
+    <a href="#support">Customer Support</a>
   </nav>
-
-  <main id="home">
+  <main>
     <section class="hero" id="track">
       <h2>Track Your Shipment</h2>
       <p>
-        Enter your tracking number below to check the latest
-        available status of your shipment.
+        Enter your shipment tracking number to check the latest
+        status available in our tracking system.
       </p>
-
-      <form id="trackingForm">
+      <form class="tracking-form" id="trackingForm">
         <input
           id="trackingNumber"
           type="text"
           placeholder="Enter tracking number"
-          aria-label="Tracking number"
+          aria-label="Shipment tracking number"
+          autocomplete="off"
           required
         >
         <button type="submit">Track Package</button>
       </form>
-
       <div id="result" aria-live="polite"></div>
     </section>
-
-    <section class="services" id="services">
-      <div class="service">
+    <h2 class="section-title" id="services">Our Services</h2>
+    <section class="services">
+      <article class="service">
         <h3>Fast Delivery</h3>
-        <p>Dependable delivery services for your parcels and packages.</p>
-      </div>
-
-      <div class="service">
+        <p>
+          Dependable delivery services for parcels and packages.
+        </p>
+      </article>
+      <article class="service">
         <h3>Shipment Tracking</h3>
-        <p>Check shipment progress using your unique tracking number.</p>
-      </div>
-
-      <div class="service">
-        <h3>Secure Handling</h3>
-        <p>We aim to handle every shipment with care and attention.</p>
-      </div>
+        <p>
+          Check your shipment progress using your unique tracking number.
+        </p>
+      </article>
+      <article class="service">
+        <h3>Careful Handling</h3>
+        <p>
+          We aim to handle every shipment with care and attention.
+        </p>
+      </article>
+    </section>
+    <section class="support-panel" id="support">
+      <h2>How Can We Help You?</h2>
+      <p>
+        Have a question about a delivery or tracking number?
+        Contact our customer support team by email.
+      </p>
+      <p>
+        <strong>Customer Support Email</strong><br>
+        <a
+          class="support-email"
+          href="mailto:swifthaullogistics13@gmail.com?subject=SwiftHaul%20Customer%20Support"
+        >swifthaullogistics13@gmail.com</a>
+      </p>
+      <a
+        class="support-button"
+        href="mailto:swifthaullogistics13@gmail.com?subject=SwiftHaul%20Customer%20Support"
+      >Email Customer Support</a>
+      <p>
+        When asking about a shipment, include your tracking number
+        in your email, but never include passwords or payment PINs.
+      </p>
     </section>
   </main>
-
   <footer>
     <p>&copy; <span id="year"></span> SwiftHaul Logistics.</p>
     <p>Reliable Delivery. Every Step of the Way.</p>
+    <p>
+      Support:
+      <a href="mailto:swifthaullogistics13@gmail.com">
+        swifthaullogistics13@gmail.com
+      </a>
+    </p>
   </footer>
-
   <script>
     document.getElementById("year").textContent =
       new Date().getFullYear();
-
+    function updateSwiftHaulClock() {
+      const clock = document.getElementById("swiftHaulClock");
+      const now = new Date();
+      const localDateTime = new Intl.DateTimeFormat(
+        navigator.language || "en",
+        {
+          dateStyle: "full",
+          timeStyle: "medium"
+        }
+      ).format(now);
+      clock.textContent = "Your Local Date & Time: " + localDateTime;
+    }
+    updateSwiftHaulClock();
+    setInterval(updateSwiftHaulClock, 1000);
     document.getElementById("trackingForm").addEventListener(
       "submit",
       async function (event) {
         event.preventDefault();
-
         const number = document
           .getElementById("trackingNumber")
           .value.trim();
-
         const result = document.getElementById("result");
-
         result.textContent = "Searching for your shipment...";
-
         try {
           const response = await fetch(
             "/api/track/" + encodeURIComponent(number)
           );
-
           const data = await response.json();
-
           if (!response.ok) {
             result.textContent =
-              data.error || "Shipment not found. Please check the number.";
+              data.error ||
+              "Shipment not found. Please check your tracking number.";
             return;
           }
-
           const shipment = data.shipment || data;
-
           result.replaceChildren();
-
           const heading = document.createElement("h3");
           heading.textContent = "Shipment Details";
           result.appendChild(heading);
-
           const fields = [
             ["Tracking Number", shipment.tracking_number],
             ["Status", shipment.status],
@@ -256,7 +340,6 @@
             ["Destination", shipment.destination],
             ["Estimated Delivery", shipment.eta]
           ];
-
           fields.forEach(function (field) {
             if (field[1]) {
               const line = document.createElement("p");
@@ -271,7 +354,5 @@
       }
     );
   </script>
-
 </body>
 </html>
-
