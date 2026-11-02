@@ -4,9 +4,9 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta name="theme-color" content="#102b50">
-  <meta name="description" content="SwiftHaul Logistics shipment tracking, delivery services and customer support.">
+  <meta name="description" content="SwiftHaul Logistics, proudly serving customers since 2017. Track shipments and contact customer support.">
   <link rel="manifest" href="/manifest.json">
-  <title>SwiftHaul Logistics | Global Shipment Tracking</title>
+  <title>SwiftHaul Logistics | Established 2017</title>
   <style>
     * {
       box-sizing: border-box;
@@ -34,6 +34,10 @@
     header p {
       margin: 8px 0;
       color: #d8e7ff;
+    }
+    .established {
+      font-weight: bold;
+      color: #ffcf55;
     }
     #swiftHaulClock {
       font-size: 14px;
@@ -209,7 +213,11 @@
   <header id="home">
     <h1>SwiftHaul Logistics</h1>
     <p>Reliable Delivery. Every Step of the Way.</p>
-    <p id="swiftHaulClock" aria-live="off">Loading local date and time...</p>
+    <p class="established">Established 2017</p>
+    <p class="established">Proudly Serving Customers Since 2017</p>
+    <p id="swiftHaulClock" aria-live="off">
+      Loading local date and time...
+    </p>
   </header>
   <nav aria-label="Main navigation">
     <a href="#home">Home</a>
@@ -283,6 +291,7 @@
   </main>
   <footer>
     <p>&copy; <span id="year"></span> SwiftHaul Logistics.</p>
+    <p>Established 2017 | Proudly Serving Customers Since 2017.</p>
     <p>Reliable Delivery. Every Step of the Way.</p>
     <p>
       Support:
@@ -304,7 +313,8 @@
           timeStyle: "medium"
         }
       ).format(now);
-      clock.textContent = "Your Local Date & Time: " + localDateTime;
+      clock.textContent =
+        "Your Local Date & Time: " + localDateTime;
     }
     updateSwiftHaulClock();
     setInterval(updateSwiftHaulClock, 1000);
