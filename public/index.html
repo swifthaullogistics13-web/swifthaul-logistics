@@ -1,207 +1,386 @@
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta name="theme-color" content="#102b50">
-  <meta name="description" content="SwiftHaul Logistics, proudly serving customers since 2017. Track shipments and contact customer support.">
+  <meta name="description" content="SwiftHaul Logistics provides reliable courier services and shipment tracking worldwide.">
+  <title>SwiftHaul Logistics | Worldwide Shipment Tracking</title>
+
   <link rel="manifest" href="/manifest.json">
-  <title>SwiftHaul Logistics | Established 2017</title>
+
   <style>
+    :root {
+      --navy: #102b50;
+      --blue: #1769aa;
+      --light: #f3f6fb;
+      --green: #168653;
+      --text: #263449;
+      --muted: #65758b;
+      --white: #ffffff;
+      --border: #dce4ef;
+    }
+
     * {
       box-sizing: border-box;
     }
-    html {
-      scroll-behavior: smooth;
-    }
+
     body {
       margin: 0;
       font-family: Arial, Helvetica, sans-serif;
-      background: #f3f6fb;
-      color: #1d2939;
+      background: var(--light);
+      color: var(--text);
       line-height: 1.6;
     }
+
     header {
-      background: linear-gradient(135deg, #102b50, #174a83);
+      background: var(--navy);
       color: white;
-      text-align: center;
-      padding: 28px 16px;
+      padding: 18px 5%;
     }
-    header h1 {
-      margin: 0;
-      font-size: clamp(27px, 5vw, 38px);
-    }
-    header p {
-      margin: 8px 0;
-      color: #d8e7ff;
-    }
-    .established {
-      font-weight: bold;
-      color: #ffcf55;
-    }
-    #swiftHaulClock {
-      font-size: 14px;
-      overflow-wrap: anywhere;
-    }
-    nav {
-      background: #0c2342;
-      padding: 12px 8px;
-      text-align: center;
-      position: sticky;
-      top: 0;
-      z-index: 10;
-    }
-    nav a {
-      display: inline-block;
-      color: white;
-      text-decoration: none;
-      font-weight: bold;
-      padding: 7px 10px;
-      font-size: 14px;
-    }
-    nav a:hover {
-      color: #ffcf55;
-    }
-    .hero {
-      background: white;
-      width: calc(100% - 28px);
-      max-width: 850px;
-      margin: 30px auto;
-      padding: 32px 22px;
-      border-radius: 14px;
-      text-align: center;
-      box-shadow: 0 5px 22px #102b5012;
-    }
-    .hero h2 {
-      color: #102b50;
-      font-size: clamp(25px, 5vw, 34px);
-      margin-top: 0;
-    }
-    .hero p {
-      max-width: 620px;
-      margin: 12px auto;
-    }
-    .tracking-form {
+
+    .header-inner {
+      max-width: 1150px;
+      margin: auto;
       display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 15px;
       flex-wrap: wrap;
-      gap: 10px;
-      margin: 25px auto 0;
-      max-width: 650px;
     }
-    input {
-      flex: 1;
-      min-width: 180px;
-      padding: 15px;
-      border: 1px solid #ccd5e0;
-      border-radius: 7px;
-      font-size: 16px;
-    }
-    button,
-    .support-button {
-      display: inline-block;
-      background: #f2a900;
-      color: #102b50;
-      border: 0;
-      border-radius: 7px;
-      padding: 14px 20px;
-      font-size: 16px;
+
+    .brand {
+      font-size: 23px;
       font-weight: bold;
+      letter-spacing: .3px;
+    }
+
+    .brand span {
+      color: #69c5ff;
+    }
+
+    nav {
+      display: flex;
+      align-items: center;
+      gap: 20px;
+      flex-wrap: wrap;
+    }
+
+    nav a {
+      color: white;
       text-decoration: none;
-      cursor: pointer;
+      font-size: 14px;
     }
-    button:hover,
-    .support-button:hover {
-      background: #ffca45;
+
+    nav a:hover {
+      text-decoration: underline;
     }
-    button:focus-visible,
-    a:focus-visible,
-    input:focus-visible {
-      outline: 3px solid #2876c7;
-      outline-offset: 3px;
+
+    select {
+      padding: 9px;
+      border: 1px solid var(--border);
+      border-radius: 7px;
+      background: white;
+      color: var(--text);
     }
-    #result {
-      margin-top: 22px;
-      text-align: left;
-      overflow-wrap: anywhere;
+
+    .hero {
+      background: linear-gradient(130deg, #102b50, #1769aa);
+      color: white;
+      text-align: center;
+      padding: 75px 20px 85px;
     }
-    #result h3 {
-      color: #174a83;
+
+    .hero h1 {
+      font-size: clamp(30px, 5vw, 48px);
+      margin: 0 0 12px;
     }
+
+    .hero p {
+      max-width: 650px;
+      margin: 0 auto 25px;
+      color: #e3efff;
+      font-size: 17px;
+    }
+
+    .hero-button {
+      display: inline-block;
+      background: white;
+      color: var(--navy);
+      padding: 12px 22px;
+      border-radius: 7px;
+      text-decoration: none;
+      font-weight: bold;
+    }
+
+    main {
+      max-width: 1100px;
+      margin: auto;
+      padding: 35px 18px;
+    }
+
     .section-title {
       text-align: center;
-      color: #102b50;
-      margin: 35px 12px 20px;
+      color: var(--navy);
+      margin: 10px 0 25px;
+      font-size: 27px;
     }
+
+    .tracking-card {
+      background: white;
+      padding: 28px;
+      border-radius: 13px;
+      box-shadow: 0 5px 22px rgba(16, 43, 80, .08);
+      max-width: 780px;
+      margin: -65px auto 45px;
+      position: relative;
+    }
+
+    .tracking-card h2 {
+      color: var(--navy);
+      margin-top: 0;
+    }
+
+    .tracking-form {
+      display: flex;
+      gap: 10px;
+      flex-wrap: wrap;
+    }
+
+    .tracking-form input {
+      flex: 1;
+      min-width: 190px;
+      padding: 14px;
+      border: 1px solid var(--border);
+      border-radius: 7px;
+      font-size: 16px;
+    }
+
+    button {
+      background: var(--blue);
+      color: white;
+      border: none;
+      border-radius: 7px;
+      padding: 14px 22px;
+      cursor: pointer;
+      font-size: 15px;
+      font-weight: bold;
+    }
+
+    button:hover {
+      background: var(--navy);
+    }
+
+    button:disabled {
+      opacity: .6;
+      cursor: wait;
+    }
+
+    #result {
+      margin-top: 24px;
+    }
+
+    .tracking-result {
+      border: 1px solid var(--border);
+      border-radius: 10px;
+      padding: 20px;
+      background: #fbfdff;
+    }
+
+    .tracking-result h3 {
+      color: var(--navy);
+      margin: 12px 0;
+    }
+
+    .location-box {
+      background: #eaf4ff;
+      border-left: 5px solid var(--blue);
+      border-radius: 7px;
+      padding: 15px;
+      margin: 15px 0;
+    }
+
+    .location-box strong {
+      display: block;
+      color: var(--navy);
+      margin-bottom: 5px;
+    }
+
+    .location-value {
+      font-size: 19px;
+      font-weight: bold;
+      color: var(--blue);
+    }
+
+    .status-pill {
+      display: inline-block;
+      background: #e4f5ec;
+      color: #126c40;
+      padding: 5px 12px;
+      border-radius: 30px;
+      font-size: 13px;
+      font-weight: bold;
+    }
+
+    .shipment-details {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(190px, 1fr));
+      gap: 12px;
+      margin: 18px 0;
+    }
+
+    .detail-item {
+      background: white;
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      padding: 12px;
+      overflow-wrap: anywhere;
+    }
+
+    .detail-item small {
+      display: block;
+      color: var(--muted);
+      margin-bottom: 4px;
+    }
+
+    .detail-item strong {
+      color: var(--navy);
+    }
+
+    .journey {
+      margin-top: 25px;
+    }
+
+    .journey-item {
+      border-left: 3px solid var(--blue);
+      padding: 2px 0 17px 18px;
+      margin-left: 7px;
+      position: relative;
+    }
+
+    .journey-item::before {
+      content: "";
+      position: absolute;
+      left: -8px;
+      top: 5px;
+      width: 13px;
+      height: 13px;
+      border-radius: 50%;
+      background: var(--blue);
+    }
+
+    .journey-item p {
+      margin: 3px 0;
+    }
+
+    .journey-item strong {
+      color: var(--navy);
+    }
+
+    .message {
+      padding: 13px;
+      border-radius: 7px;
+      background: #fff4e5;
+      color: #80520b;
+    }
+
     .services {
-      max-width: 1050px;
-      margin: 0 auto;
-      padding: 0 16px;
       display: grid;
       grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
       gap: 18px;
+      margin-bottom: 45px;
     }
-    .service {
+
+    .service-card {
       background: white;
-      padding: 24px 20px;
+      padding: 24px;
+      border-radius: 11px;
+      box-shadow: 0 3px 15px rgba(16, 43, 80, .06);
+      text-align: center;
+    }
+
+    .service-icon {
+      font-size: 34px;
+    }
+
+    .service-card h3 {
+      color: var(--navy);
+      margin-bottom: 8px;
+    }
+
+    .service-card p {
+      color: var(--muted);
+      font-size: 14px;
+    }
+
+    .about {
+      background: white;
+      padding: 28px;
+      border-radius: 12px;
+      margin-bottom: 35px;
+    }
+
+    .about h2 {
+      color: var(--navy);
+    }
+
+    .support {
+      background: var(--navy);
+      color: white;
+      padding: 35px 20px;
       border-radius: 12px;
       text-align: center;
-      box-shadow: 0 4px 15px #102b500c;
+      margin-bottom: 35px;
     }
-    .service h3 {
-      color: #174a83;
+
+    .support h2 {
+      margin-top: 0;
     }
-    .service p {
-      margin-bottom: 0;
-    }
-    .support-panel {
-      width: calc(100% - 28px);
-      max-width: 850px;
-      margin: 36px auto;
-      padding: 30px 20px;
-      background: white;
-      border-radius: 14px;
-      text-align: center;
-      box-shadow: 0 5px 22px #102b5012;
-    }
-    .support-panel h2 {
-      color: #102b50;
-    }
-    .support-email {
-      color: #174a83;
+
+    .support a {
+      color: #80d0ff;
       font-weight: bold;
       overflow-wrap: anywhere;
     }
-    .support-button {
-      margin-top: 12px;
-    }
+
     footer {
-      background: #102b50;
-      color: white;
+      background: #0b1e38;
+      color: #d7e2f1;
       text-align: center;
-      padding: 25px 14px;
-      margin-top: 40px;
+      padding: 25px 15px;
+      font-size: 13px;
     }
-    footer a {
-      color: #ffcf55;
-      overflow-wrap: anywhere;
-    }
+
     footer p {
-      margin: 7px 0;
+      margin: 5px;
     }
-    @media (max-width: 520px) {
+
+    @media (max-width: 600px) {
+      header {
+        padding: 16px;
+      }
+
+      .header-inner {
+        align-items: flex-start;
+      }
+
       nav {
-        position: static;
+        gap: 12px;
       }
-      nav a {
-        padding: 6px;
-        margin: 2px;
-      }
+
       .hero {
-        padding: 26px 16px;
+        padding: 65px 18px 80px;
       }
+
+      .tracking-card {
+        padding: 20px;
+      }
+
       .tracking-form {
         flex-direction: column;
       }
+
       .tracking-form input,
       .tracking-form button {
         width: 100%;
@@ -209,160 +388,557 @@
     }
   </style>
 </head>
+
 <body>
-  <header id="home">
-    <h1>SwiftHaul Logistics</h1>
-    <p>Reliable Delivery. Every Step of the Way.</p>
-    <p class="established">Established 2017</p>
-    <p class="established">Proudly Serving Customers Since 2017</p>
-    <p id="swiftHaulClock" aria-live="off">
-      Loading local date and time...
+
+<header>
+  <div class="header-inner">
+    <div class="brand">SwiftHaul <span>Logistics</span></div>
+
+    <nav>
+      <a href="#home" data-i18n="home">Home</a>
+      <a href="#tracking" data-i18n="tracking">Track Shipment</a>
+      <a href="#services" data-i18n="services">Services</a>
+      <a href="#support" data-i18n="support">Support</a>
+
+      <select id="language" aria-label="Choose language">
+        <option value="en">English</option>
+        <option value="fr">Français</option>
+        <option value="es">Español</option>
+        <option value="de">Deutsch</option>
+        <option value="pt">Português</option>
+        <option value="it">Italiano</option>
+      </select>
+    </nav>
+  </div>
+</header>
+
+<section class="hero" id="home">
+  <h1 data-i18n="heroTitle">Reliable Delivery. Every Step of the Way.</h1>
+  <p data-i18n="heroText">
+    Your trusted logistics partner for secure, efficient and dependable
+    shipment delivery. Stay informed about your shipment wherever it goes.
+  </p>
+  <a class="hero-button" href="#tracking" data-i18n="trackNow">
+    Track Your Shipment
+  </a>
+</section>
+
+<main>
+
+  <section class="tracking-card" id="tracking">
+    <h2 data-i18n="trackTitle">Track Your Shipment</h2>
+    <p data-i18n="trackDescription">
+      Enter your tracking number below to view your shipment status,
+      latest recorded location and delivery journey.
     </p>
-  </header>
-  <nav aria-label="Main navigation">
-    <a href="#home">Home</a>
-    <a href="#track">Track Shipment</a>
-    <a href="#services">Our Services</a>
-    <a href="#support">Customer Support</a>
-  </nav>
-  <main>
-    <section class="hero" id="track">
-      <h2>Track Your Shipment</h2>
-      <p>
-        Enter your shipment tracking number to check the latest
-        status available in our tracking system.
-      </p>
-      <form class="tracking-form" id="trackingForm">
-        <input
-          id="trackingNumber"
-          type="text"
-          placeholder="Enter tracking number"
-          aria-label="Shipment tracking number"
-          autocomplete="off"
-          required
-        >
-        <button type="submit">Track Package</button>
-      </form>
-      <div id="result" aria-live="polite"></div>
-    </section>
-    <h2 class="section-title" id="services">Our Services</h2>
-    <section class="services">
-      <article class="service">
-        <h3>Fast Delivery</h3>
-        <p>
-          Dependable delivery services for parcels and packages.
+
+    <form class="tracking-form" id="trackingForm">
+      <input
+        type="text"
+        id="trackingNumber"
+        placeholder="Enter your tracking number"
+        autocomplete="off"
+        required
+      >
+      <button type="submit" id="trackButton" data-i18n="trackButton">
+        Track Shipment
+      </button>
+    </form>
+
+    <div id="result" aria-live="polite"></div>
+  </section>
+
+  <section id="services">
+    <h2 class="section-title" data-i18n="servicesTitle">Our Services</h2>
+
+    <div class="services">
+      <div class="service-card">
+        <div class="service-icon">🚚</div>
+        <h3 data-i18n="fastTitle">Fast Delivery</h3>
+        <p data-i18n="fastText">
+          Dependable shipment handling and delivery services.
         </p>
-      </article>
-      <article class="service">
-        <h3>Shipment Tracking</h3>
-        <p>
-          Check your shipment progress using your unique tracking number.
+      </div>
+
+      <div class="service-card">
+        <div class="service-icon">📦</div>
+        <h3 data-i18n="trackingTitle">Shipment Tracking</h3>
+        <p data-i18n="trackingText">
+          Follow your shipment status and its latest recorded location.
         </p>
-      </article>
-      <article class="service">
-        <h3>Careful Handling</h3>
-        <p>
-          We aim to handle every shipment with care and attention.
+      </div>
+
+      <div class="service-card">
+        <div class="service-icon">🔒</div>
+        <h3 data-i18n="secureTitle">Secure Handling</h3>
+        <p data-i18n="secureText">
+          Careful handling and attention throughout the delivery process.
         </p>
-      </article>
-    </section>
-    <section class="support-panel" id="support">
-      <h2>How Can We Help You?</h2>
-      <p>
-        Have a question about a delivery or tracking number?
-        Contact our customer support team by email.
-      </p>
-      <p>
-        <strong>Customer Support Email</strong><br>
-        <a
-          class="support-email"
-          href="mailto:swifthaullogistics13@gmail.com?subject=SwiftHaul%20Customer%20Support"
-        >swifthaullogistics13@gmail.com</a>
-      </p>
-      <a
-        class="support-button"
-        href="mailto:swifthaullogistics13@gmail.com?subject=SwiftHaul%20Customer%20Support"
-      >Email Customer Support</a>
-      <p>
-        When asking about a shipment, include your tracking number
-        in your email, but never include passwords or payment PINs.
-      </p>
-    </section>
-  </main>
-  <footer>
-    <p>&copy; <span id="year"></span> SwiftHaul Logistics.</p>
-    <p>Established 2017 | Proudly Serving Customers Since 2017.</p>
-    <p>Reliable Delivery. Every Step of the Way.</p>
+      </div>
+    </div>
+  </section>
+
+  <section class="about" id="about">
+    <h2 data-i18n="aboutTitle">About SwiftHaul Logistics</h2>
+    <p data-i18n="aboutText">
+      Established in 2017, SwiftHaul Logistics is committed to providing
+      reliable courier and logistics services. We believe in keeping
+      customers informed with shipment updates from collection to delivery.
+    </p>
+  </section>
+
+  <section class="support" id="support">
+    <h2 data-i18n="supportTitle">Customer Support</h2>
+    <p data-i18n="supportText">
+      Need help with a shipment or have a question? Contact our support team.
+    </p>
     <p>
-      Support:
       <a href="mailto:swifthaullogistics13@gmail.com">
         swifthaullogistics13@gmail.com
       </a>
     </p>
-  </footer>
-  <script>
-    document.getElementById("year").textContent =
-      new Date().getFullYear();
-    function updateSwiftHaulClock() {
-      const clock = document.getElementById("swiftHaulClock");
-      const now = new Date();
-      const localDateTime = new Intl.DateTimeFormat(
-        navigator.language || "en",
-        {
-          dateStyle: "full",
-          timeStyle: "medium"
-        }
-      ).format(now);
-      clock.textContent =
-        "Your Local Date & Time: " + localDateTime;
+  </section>
+
+</main>
+
+<footer>
+  <p>© 2026 SwiftHaul Logistics. All rights reserved.</p>
+  <p data-i18n="footerText">Reliable Delivery. Every Step of the Way.</p>
+</footer>
+
+<script>
+  const translations = {
+    en: {
+      home: "Home",
+      tracking: "Track Shipment",
+      services: "Services",
+      support: "Support",
+      heroTitle: "Reliable Delivery. Every Step of the Way.",
+      heroText: "Your trusted logistics partner for secure, efficient and dependable shipment delivery. Stay informed about your shipment wherever it goes.",
+      trackNow: "Track Your Shipment",
+      trackTitle: "Track Your Shipment",
+      trackDescription: "Enter your tracking number below to view your shipment status, latest recorded location and delivery journey.",
+      trackButton: "Track Shipment",
+      servicesTitle: "Our Services",
+      fastTitle: "Fast Delivery",
+      fastText: "Dependable shipment handling and delivery services.",
+      trackingTitle: "Shipment Tracking",
+      trackingText: "Follow your shipment status and its latest recorded location.",
+      secureTitle: "Secure Handling",
+      secureText: "Careful handling and attention throughout the delivery process.",
+      aboutTitle: "About SwiftHaul Logistics",
+      aboutText: "Established in 2017, SwiftHaul Logistics is committed to providing reliable courier and logistics services. We believe in keeping customers informed with shipment updates from collection to delivery.",
+      supportTitle: "Customer Support",
+      supportText: "Need help with a shipment or have a question? Contact our support team.",
+      footerText: "Reliable Delivery. Every Step of the Way.",
+      number: "Tracking Number",
+      status: "Shipment Status",
+      origin: "Origin",
+      destination: "Destination",
+      eta: "Estimated Delivery",
+      currentLocation: "Latest Recorded Delivery Location",
+      journey: "Shipment Journey",
+      date: "Date",
+      update: "Update",
+      noLocation: "Location not yet updated",
+      noHistory: "No journey updates have been recorded yet.",
+      notFound: "Tracking number not found. Please check the number and try again.",
+      error: "Unable to retrieve shipment information. Please try again later.",
+      loading: "Searching for your shipment...",
+      enter: "Please enter a tracking number."
+    },
+
+    fr: {
+      home: "Accueil",
+      tracking: "Suivre un colis",
+      services: "Services",
+      support: "Assistance",
+      heroTitle: "Livraison fiable. À chaque étape.",
+      heroText: "Votre partenaire logistique de confiance pour des livraisons sûres et efficaces.",
+      trackNow: "Suivre votre colis",
+      trackTitle: "Suivre votre colis",
+      trackDescription: "Saisissez votre numéro de suivi pour consulter le statut et la localisation enregistrée de votre colis.",
+      trackButton: "Suivre le colis",
+      servicesTitle: "Nos services",
+      fastTitle: "Livraison rapide",
+      fastText: "Des services de livraison fiables.",
+      trackingTitle: "Suivi des colis",
+      trackingText: "Consultez le statut et la dernière localisation enregistrée.",
+      secureTitle: "Transport sécurisé",
+      secureText: "Une attention particulière à chaque étape.",
+      aboutTitle: "À propos de SwiftHaul Logistics",
+      aboutText: "Fondée en 2017, SwiftHaul Logistics s'engage à fournir des services de messagerie et de logistique fiables.",
+      supportTitle: "Service client",
+      supportText: "Besoin d'aide ? Contactez notre équipe.",
+      footerText: "Livraison fiable. À chaque étape.",
+      number: "Numéro de suivi",
+      status: "Statut",
+      origin: "Origine",
+      destination: "Destination",
+      eta: "Livraison estimée",
+      currentLocation: "Dernière localisation enregistrée",
+      journey: "Historique du colis",
+      date: "Date",
+      update: "Mise à jour",
+      noLocation: "Localisation non mise à jour",
+      noHistory: "Aucune mise à jour enregistrée.",
+      notFound: "Numéro de suivi introuvable.",
+      error: "Impossible de récupérer les informations.",
+      loading: "Recherche en cours...",
+      enter: "Veuillez saisir un numéro de suivi."
+    },
+
+    es: {
+      home: "Inicio",
+      tracking: "Rastrear envío",
+      services: "Servicios",
+      support: "Ayuda",
+      heroTitle: "Entrega confiable. En cada paso.",
+      heroText: "Su socio logístico de confianza para entregas seguras y eficientes.",
+      trackNow: "Rastrear envío",
+      trackTitle: "Rastrear su envío",
+      trackDescription: "Introduzca su número de seguimiento para consultar el estado y la última ubicación registrada.",
+      trackButton: "Rastrear envío",
+      servicesTitle: "Nuestros servicios",
+      fastTitle: "Entrega rápida",
+      fastText: "Servicios de entrega confiables.",
+      trackingTitle: "Seguimiento de envíos",
+      trackingText: "Consulte el estado y la última ubicación registrada.",
+      secureTitle: "Manejo seguro",
+      secureText: "Atención cuidadosa durante todo el proceso.",
+      aboutTitle: "Sobre SwiftHaul Logistics",
+      aboutText: "Fundada en 2017, SwiftHaul Logistics ofrece servicios de mensajería y logística confiables.",
+      supportTitle: "Atención al cliente",
+      supportText: "¿Necesita ayuda? Contacte con nuestro equipo.",
+      footerText: "Entrega confiable. En cada paso.",
+      number: "Número de seguimiento",
+      status: "Estado del envío",
+      origin: "Origen",
+      destination: "Destino",
+      eta: "Entrega estimada",
+      currentLocation: "Última ubicación registrada",
+      journey: "Historial del envío",
+      date: "Fecha",
+      update: "Actualización",
+      noLocation: "Ubicación aún no actualizada",
+      noHistory: "No hay actualizaciones registradas.",
+      notFound: "No se encontró el número de seguimiento.",
+      error: "No se pudo obtener la información.",
+      loading: "Buscando su envío...",
+      enter: "Introduzca un número de seguimiento."
+    },
+
+    de: {
+      home: "Startseite",
+      tracking: "Sendung verfolgen",
+      services: "Dienstleistungen",
+      support: "Support",
+      heroTitle: "Zuverlässige Lieferung. Bei jedem Schritt.",
+      heroText: "Ihr zuverlässiger Logistikpartner für sichere und effiziente Lieferungen.",
+      trackNow: "Sendung verfolgen",
+      trackTitle: "Sendung verfolgen",
+      trackDescription: "Geben Sie Ihre Sendungsnummer ein, um Status und letzten erfassten Standort zu sehen.",
+      trackButton: "Sendung verfolgen",
+      servicesTitle: "Unsere Dienstleistungen",
+      fastTitle: "Schnelle Lieferung",
+      fastText: "Zuverlässige Lieferdienste.",
+      trackingTitle: "Sendungsverfolgung",
+      trackingText: "Sehen Sie Status und letzten erfassten Standort.",
+      secureTitle: "Sichere Handhabung",
+      secureText: "Sorgfältige Behandlung während des gesamten Lieferprozesses.",
+      aboutTitle: "Über SwiftHaul Logistics",
+      aboutText: "SwiftHaul Logistics wurde 2017 gegründet und bietet zuverlässige Kurier- und Logistikdienste.",
+      supportTitle: "Kundenservice",
+      supportText: "Benötigen Sie Hilfe? Kontaktieren Sie unser Team.",
+      footerText: "Zuverlässige Lieferung. Bei jedem Schritt.",
+      number: "Sendungsnummer",
+      status: "Sendungsstatus",
+      origin: "Absenderort",
+      destination: "Zielort",
+      eta: "Voraussichtliche Lieferung",
+      currentLocation: "Letzter erfasster Lieferstandort",
+      journey: "Sendungsverlauf",
+      date: "Datum",
+      update: "Aktualisierung",
+      noLocation: "Standort noch nicht aktualisiert",
+      noHistory: "Noch keine Aktualisierungen vorhanden.",
+      notFound: "Sendungsnummer nicht gefunden.",
+      error: "Sendungsinformationen konnten nicht geladen werden.",
+      loading: "Sendung wird gesucht...",
+      enter: "Bitte geben Sie eine Sendungsnummer ein."
+    },
+
+    pt: {
+      home: "Início",
+      tracking: "Rastrear envio",
+      services: "Serviços",
+      support: "Suporte",
+      heroTitle: "Entrega confiável. Em cada etapa.",
+      heroText: "Seu parceiro logístico de confiança para entregas seguras e eficientes.",
+      trackNow: "Rastrear envio",
+      trackTitle: "Rastrear seu envio",
+      trackDescription: "Digite seu número de rastreamento para consultar o status e a última localização registrada.",
+      trackButton: "Rastrear envio",
+      servicesTitle: "Nossos serviços",
+      fastTitle: "Entrega rápida",
+      fastText: "Serviços de entrega confiáveis.",
+      trackingTitle: "Rastreamento de envios",
+      trackingText: "Consulte o status e a última localização registrada.",
+      secureTitle: "Manuseio seguro",
+      secureText: "Cuidado durante todo o processo de entrega.",
+      aboutTitle: "Sobre a SwiftHaul Logistics",
+      aboutText: "Fundada em 2017, a SwiftHaul Logistics oferece serviços confiáveis de courier e logística.",
+      supportTitle: "Atendimento ao cliente",
+      supportText: "Precisa de ajuda? Entre em contato com nossa equipe.",
+      footerText: "Entrega confiável. Em cada etapa.",
+      number: "Número de rastreamento",
+      status: "Status do envio",
+      origin: "Origem",
+      destination: "Destino",
+      eta: "Entrega estimada",
+      currentLocation: "Última localização registrada",
+      journey: "Histórico do envio",
+      date: "Data",
+      update: "Atualização",
+      noLocation: "Localização ainda não atualizada",
+      noHistory: "Nenhuma atualização registrada.",
+      notFound: "Número de rastreamento não encontrado.",
+      error: "Não foi possível obter as informações.",
+      loading: "Procurando seu envio...",
+      enter: "Digite um número de rastreamento."
+    },
+
+    it: {
+      home: "Home",
+      tracking: "Traccia spedizione",
+      services: "Servizi",
+      support: "Assistenza",
+      heroTitle: "Consegne affidabili. In ogni fase.",
+      heroText: "Il vostro partner logistico di fiducia per consegne sicure ed efficienti.",
+      trackNow: "Traccia la spedizione",
+      trackTitle: "Traccia la spedizione",
+      trackDescription: "Inserisci il numero di tracciamento per vedere lo stato e l'ultima posizione registrata.",
+      trackButton: "Traccia spedizione",
+      servicesTitle: "I nostri servizi",
+      fastTitle: "Consegna rapida",
+      fastText: "Servizi di consegna affidabili.",
+      trackingTitle: "Tracciamento spedizioni",
+      trackingText: "Consulta lo stato e l'ultima posizione registrata.",
+      secureTitle: "Gestione sicura",
+      secureText: "Attenzione durante tutto il processo di consegna.",
+      aboutTitle: "Informazioni su SwiftHaul Logistics",
+      aboutText: "Fondata nel 2017, SwiftHaul Logistics offre servizi di corriere e logistica affidabili.",
+      supportTitle: "Assistenza clienti",
+      supportText: "Hai bisogno di aiuto? Contatta il nostro team.",
+      footerText: "Consegne affidabili. In ogni fase.",
+      number: "Numero di tracciamento",
+      status: "Stato della spedizione",
+      origin: "Origine",
+      destination: "Destinazione",
+      eta: "Consegna prevista",
+      currentLocation: "Ultima posizione registrata",
+      journey: "Cronologia della spedizione",
+      date: "Data",
+      update: "Aggiornamento",
+      noLocation: "Posizione non ancora aggiornata",
+      noHistory: "Nessun aggiornamento registrato.",
+      notFound: "Numero di tracciamento non trovato.",
+      error: "Impossibile recuperare le informazioni.",
+      loading: "Ricerca della spedizione...",
+      enter: "Inserisci un numero di tracciamento."
     }
-    updateSwiftHaulClock();
-    setInterval(updateSwiftHaulClock, 1000);
-    document.getElementById("trackingForm").addEventListener(
-      "submit",
-      async function (event) {
-        event.preventDefault();
-        const number = document
-          .getElementById("trackingNumber")
-          .value.trim();
-        const result = document.getElementById("result");
-        result.textContent = "Searching for your shipment...";
-        try {
-          const response = await fetch(
-            "/api/track/" + encodeURIComponent(number)
-          );
-          const data = await response.json();
-          if (!response.ok) {
-            result.textContent =
-              data.error ||
-              "Shipment not found. Please check your tracking number.";
-            return;
-          }
-          const shipment = data.shipment || data;
-          result.replaceChildren();
-          const heading = document.createElement("h3");
-          heading.textContent = "Shipment Details";
-          result.appendChild(heading);
-          const fields = [
-            ["Tracking Number", shipment.tracking_number],
-            ["Status", shipment.status],
-            ["Origin", shipment.origin],
-            ["Destination", shipment.destination],
-            ["Estimated Delivery", shipment.eta]
-          ];
-          fields.forEach(function (field) {
-            if (field[1]) {
-              const line = document.createElement("p");
-              line.textContent = field[0] + ": " + field[1];
-              result.appendChild(line);
-            }
-          });
-        } catch (error) {
-          result.textContent =
-            "Unable to connect right now. Please try again later.";
-        }
+  };
+
+  let currentLanguage = "en";
+
+  function translatePage(language) {
+    currentLanguage = translations[language] ? language : "en";
+    const words = translations[currentLanguage];
+
+    document.documentElement.lang = currentLanguage;
+
+    document.querySelectorAll("[data-i18n]").forEach(function(element) {
+      const key = element.getAttribute("data-i18n");
+      if (words[key]) {
+        element.textContent = words[key];
       }
-    );
-  </script>
+    });
+
+    document.getElementById("trackingNumber").placeholder =
+      words.number;
+  }
+
+  document.getElementById("language").addEventListener("change", function() {
+    translatePage(this.value);
+  });
+
+  function addDetail(container, label, value) {
+    if (value === undefined || value === null || value === "") return;
+
+    const item = document.createElement("div");
+    item.className = "detail-item";
+
+    const small = document.createElement("small");
+    small.textContent = label;
+
+    const strong = document.createElement("strong");
+    strong.textContent = value;
+
+    item.appendChild(small);
+    item.appendChild(strong);
+    container.appendChild(item);
+  }
+
+  function displayShipment(data) {
+    const words = translations[currentLanguage];
+    const shipment = data.shipment || data;
+    const result = document.getElementById("result");
+
+    result.replaceChildren();
+
+    const card = document.createElement("div");
+    card.className = "tracking-result";
+
+    const title = document.createElement("h3");
+    title.textContent = words.trackTitle;
+    card.appendChild(title);
+
+    const events = Array.isArray(shipment.events)
+      ? shipment.events
+      : [];
+
+    const latestEvent = events.length ? events[0] : null;
+
+    const currentLocation =
+      latestEvent && latestEvent.location
+        ? latestEvent.location
+        : words.noLocation;
+
+    const locationBox = document.createElement("div");
+    locationBox.className = "location-box";
+
+    const locationHeading = document.createElement("strong");
+    locationHeading.textContent = words.currentLocation;
+
+    const locationValue = document.createElement("div");
+    locationValue.className = "location-value";
+    locationValue.textContent = currentLocation;
+
+    locationBox.appendChild(locationHeading);
+    locationBox.appendChild(locationValue);
+    card.appendChild(locationBox);
+
+    const status = document.createElement("p");
+    const statusPill = document.createElement("span");
+    statusPill.className = "status-pill";
+    statusPill.textContent =
+      words.status + ": " + (shipment.status || "Unknown");
+    status.appendChild(statusPill);
+    card.appendChild(status);
+
+    const details = document.createElement("div");
+    details.className = "shipment-details";
+
+    addDetail(details, words.number, shipment.tracking_number);
+    addDetail(details, words.origin, shipment.origin);
+    addDetail(details, words.destination, shipment.destination);
+    addDetail(details, words.eta, shipment.eta);
+
+    card.appendChild(details);
+
+    const journeyHeading = document.createElement("h3");
+    journeyHeading.className = "journey";
+    journeyHeading.textContent = words.journey;
+    card.appendChild(journeyHeading);
+
+    if (events.length === 0) {
+      const empty = document.createElement("p");
+      empty.className = "message";
+      empty.textContent = words.noHistory;
+      card.appendChild(empty);
+    } else {
+      events.forEach(function(event) {
+        const entry = document.createElement("div");
+        entry.className = "journey-item";
+
+        const eventStatus = document.createElement("p");
+        const eventStrong = document.createElement("strong");
+        eventStrong.textContent = event.status || "Shipment update";
+        eventStatus.appendChild(eventStrong);
+        entry.appendChild(eventStatus);
+
+        if (event.location) {
+          const location = document.createElement("p");
+          location.textContent = "Location: " + event.location;
+          entry.appendChild(location);
+        }
+
+        if (event.event_time) {
+          const date = document.createElement("p");
+          const parsedDate = new Date(event.event_time);
+
+          date.textContent = words.date + ": " +
+            (isNaN(parsedDate.getTime())
+              ? event.event_time
+              : parsedDate.toLocaleString());
+          entry.appendChild(date);
+        }
+
+        if (event.note) {
+          const note = document.createElement("p");
+          note.textContent = words.update + ": " + event.note;
+          entry.appendChild(note);
+        }
+
+        card.appendChild(entry);
+      });
+    }
+
+    result.appendChild(card);
+  }
+
+  document.getElementById("trackingForm").addEventListener("submit", async function(event) {
+    event.preventDefault();
+
+    const words = translations[currentLanguage];
+    const input = document.getElementById("trackingNumber");
+    const button = document.getElementById("trackButton");
+    const result = document.getElementById("result");
+
+    const trackingNumber = input.value.trim();
+
+    if (!trackingNumber) {
+      result.textContent = words.enter;
+      return;
+    }
+
+    button.disabled = true;
+    result.textContent = words.loading;
+
+    try {
+      const response = await fetch(
+        "/api/track/" + encodeURIComponent(trackingNumber)
+      );
+
+      const data = await response.json();
+
+      if (!response.ok) {
+        result.textContent = data.error || words.notFound;
+        return;
+      }
+
+      displayShipment(data);
+
+    } catch (error) {
+      result.textContent = words.error;
+    } finally {
+      button.disabled = false;
+    }
+  });
+
+  translatePage("en");
+</script>
+
 </body>
 </html>
